@@ -4,27 +4,41 @@
     <el-button class="add" type="primary" @click="dialogShow('add')">添加成员</el-button>
 
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
-      <el-table-column align="center" label='ID' width="230">
+      <el-table-column align="center" label='ID' width="150">
         <template slot-scope="scope">
           {{scope.row.id}}
         </template>
       </el-table-column>
-      <el-table-column label="姓名" width="230" align="center">
+      <el-table-column label="头像" width="150" align="center">
+        <template slot-scope="scope">
+          {{scope.row.userIcon}}
+        </template>
+      </el-table-column>
+      <el-table-column label="姓名" width="150" align="center">
         <template slot-scope="scope">
           {{scope.row.name}}
         </template>
       </el-table-column>
-      <el-table-column label="年龄" width="260" align="center">
+      <el-table-column label="手机号" width="150" align="center">
         <template slot-scope="scope">
-          <span>{{scope.row.age}}</span>
+          <span>{{scope.row.phone}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="职业" align="center">
+      <el-table-column label="密码" align="center">
         <template slot-scope="scope">
-          {{scope.row.occupation}}
+          {{scope.row.password}}
         </template>
       </el-table-column>
-
+      <el-table-column label="日程" align="center">
+        <template slot-scope="scope">
+          <el-button type="success" size="mini" @click="checkSchedule">查看</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column label="好友" align="center">
+        <template slot-scope="scope">
+          <el-button type="success" size="mini" @click="checkFriend">查看</el-button>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button type="success" size="mini" @click="dialogShow('edit',scope.row)">编辑</el-button>
@@ -38,11 +52,11 @@
         <el-form-item label="姓名" label-width="60px">
           <el-input v-model.trim="form.name" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="年龄" label-width="60px">
-          <el-input v-model.trim="form.age" auto-complete="off"></el-input>
+        <el-form-item label="手机号" label-width="60px">
+          <el-input v-model.trim="form.phone" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="职业" label-width="60px">
-          <el-input v-model.trim="form.occupation" auto-complete="off"></el-input>
+        <el-form-item label="密码" label-width="60px">
+          <el-input v-model.trim="form.password" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -71,6 +85,12 @@
       this.fetchData()
     },
     methods: {
+      checkSchedule(){
+        this.$router.push('/example/schedule')
+      },
+      checkFriend(){
+        this.$router.push('/example/friend')
+      },
       callback(text){
         this.fetchData();
         this.dialogFormVisible=false;

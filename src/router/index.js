@@ -48,9 +48,24 @@ export const constantRouterMap = [
         name: 'Table',
         component: _import('table/index'),
         meta: { title: 'Table', icon: 'table' }
+      },
+      {
+        path: 'schedule',
+        name: 'Schedule',
+        hidden: true,
+        component: _import('table/schedule'),
+        meta: { title: 'Schedule', icon: 'schedule' }
+      },
+      {
+        path: 'friend',
+        name: 'Friend',
+        hidden: true,
+        component: _import('table/friend'),
+        meta: { title: 'Friend', icon: 'friend' }
       }
     ]
   },
+
 
   { path: '*', redirect: '/404', hidden: true }
 ];
